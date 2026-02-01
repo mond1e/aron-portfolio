@@ -2,11 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="AMLogo.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="AMLogo.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aron Mondragon • Video Editor</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Aron Mondragon – Video Editor & Performance Marketing Specialist</title>
+    <meta name="description" content="Aron Mondragon is a professional video editor specializing in high-retention ads, YouTube storytelling, and short-form content. Trusted by 20+ clients for performance-driven video editing that delivers measurable growth.">
+    <meta name="author" content="Aron Mondragon">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://aronmondragon.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="AMLogo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="AMLogo.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aronmondragon.com/">
+    <meta property="og:title" content="Aron Mondragon – Video Editor & Performance Marketing Specialist">
+    <meta property="og:description" content="Professional video editor specializing in high-retention ads, YouTube storytelling, and short-form content. Trusted by 20+ clients for performance-driven editing.">
+    <meta property="og:image" content="https://aronmondragon.com/AronPic2.png">
+    <meta property="og:site_name" content="Aron Mondragon">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://aronmondragon.com/">
+    <meta name="twitter:title" content="Aron Mondragon – Video Editor & Performance Marketing Specialist">
+    <meta name="twitter:description" content="Professional video editor specializing in high-retention ads, YouTube storytelling, and short-form content. Trusted by 20+ clients for performance-driven editing.">
+    <meta name="twitter:image" content="https://aronmondragon.com/AronPic2.png">
+    <meta name="twitter:creator" content="@mondieedits">
+    
+    <!-- Schema.org Person JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aron Mondragon",
+        "jobTitle": "Video Editor & Performance Marketing Specialist",
+        "url": "https://aronmondragon.com",
+        "image": "https://aronmondragon.com/AronPic2.png",
+        "description": "Professional video editor specializing in high-retention ads, YouTube storytelling, and short-form content.",
+        "sameAs": [
+            "https://x.com/mondieedits",
+            "https://www.linkedin.com/in/jamondragon/",
+            "https://www.instagram.com/mondiearon/"
+        ],
+        "knowsAbout": ["Video Editing", "Performance Marketing", "YouTube Content", "Short-form Video", "Adobe Premiere Pro", "After Effects"]
+    }
+    </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -14,7 +59,7 @@
                 extend: {
                     colors: {
                         background: '#000000',
-                        accent: '#aafb09', // Neon green
+                        accent: '#aafb09',
                         surface: '#0f0f0f',
                         subtle: '#1a1a1a'
                     },
@@ -76,6 +121,19 @@
             outline-offset: 2px;
         }
 
+        /* Screen reader only - for SEO H1 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         /* Mobile touch improvements */
         @media (max-width: 768px) {
             .touch-target {
@@ -106,7 +164,9 @@
                     <img
                         src="AMLogo.png"
                         alt="Aron Mondragon logo"
-                        class="h-8 sm:h-10 md:h-14 w-auto" 
+                        class="h-8 sm:h-10 md:h-14 w-auto"
+                        width="56"
+                        height="56"
                     />
                     <span class="text-sm sm:text-base md:text-xl font-bold tracking-tight">
                         Aron Mondragon
@@ -114,18 +174,13 @@
                 </a>
 
                 <!-- Desktop Nav -->
-                <nav class="hidden md:flex gap-8 text-sm font-medium text-zinc-400">
+                <nav class="hidden md:flex gap-8 text-sm font-medium text-zinc-400" aria-label="Main navigation">
                     <button onclick="router('short-form')" class="hover:text-white transition-colors nav-item" data-route="short-form">
                         Short-form
                     </button>
                     <button onclick="router('long-form')" class="hover:text-white transition-colors nav-item" data-route="long-form">
                         Long-form
                     </button>
-                    <!--
-                    <button onclick="router('graphics')" class="hover:text-white transition-colors nav-item" data-route="graphics">
-                        Graphics
-                    </button>
-                    -->
                     <button onclick="router('about')" class="hover:text-white transition-colors nav-item" data-route="about">
                         About
                     </button>
@@ -135,8 +190,8 @@
                 </nav>
 
                 <!-- Mobile Menu Toggle -->
-                <button onclick="toggleMobile()" class="md:hidden text-white p-2 touch-target flex items-center justify-center" aria-label="Toggle menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-current">
+                <button onclick="toggleMobile()" class="md:hidden text-white p-2 touch-target flex items-center justify-center" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-current" aria-hidden="true">
                         <path d="M4 8h16M4 16h16" stroke-width="2" stroke-linecap="square"/>
                     </svg>
                 </button>
@@ -145,16 +200,14 @@
 
 
         <!-- Mobile Nav Overlay -->
-        <div id="mobile-menu" class="hidden fixed top-16 sm:top-20 left-0 w-full bg-surface border-b border-white/5 md:hidden z-40">
+        <nav id="mobile-menu" class="hidden fixed top-16 sm:top-20 left-0 w-full bg-surface border-b border-white/5 md:hidden z-40" aria-label="Mobile navigation">
             <div class="flex flex-col p-4 gap-2 text-center">
                 <button onclick="router('short-form'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base">Short-form</button>
                 <button onclick="router('long-form'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base">Long-form</button>
-                <!--<button onclick="router('graphics'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base">Graphics</button>-->
                 <button onclick="router('about'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base">About</button>
                 <button onclick="router('contact'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base">Contact</button>
             </div>
-        </div>
-    </header>
+        </nav>
 
     <!-- Main Content Area -->
     <main class="flex-grow pt-16 sm:pt-20">
@@ -163,7 +216,7 @@
             <div id="home" class="page-view active relative overflow-hidden">
 
             <!-- Background effects -->
-            <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
                 <!-- Soft green glow top-left - reduced on mobile -->
                 <div class="absolute -top-40 -left-40 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] rounded-full
                             bg-accent/10 blur-[100px] sm:blur-[120px] md:blur-[160px]"></div>
@@ -192,9 +245,9 @@
                     </span>
                 </div>
 
-                <!-- Headline -->
+                <!-- Headline - H1 with full name for SEO -->
                 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-semibold tracking-tight leading-[1.1] sm:leading-[0.95] mb-6 sm:mb-8">
-                    Videos edited <br>
+                    <span class="sr-only">Aron Mondragon – </span>Videos edited <br>
                     for <span class="text-accent">growth.</span>
                 </h1>
 
@@ -212,13 +265,6 @@
                             hover:bg-white transition-colors text-center touch-target">
                     Let's talk about your project
                     </button>
-                    <!--
-                    <button
-                    onclick="router('long-form')"
-                    class="text-sm text-zinc-400 hover:text-white transition-colors">
-                    View work →
-                    </button>
-                    -->
                 </div>
 
                 </div>
@@ -244,7 +290,9 @@
                             <iframe
                                 class="absolute inset-0 w-full h-full"
                                 src="https://www.youtube.com/embed/6dMtY3aB_78"
+                                title="Don't Buy an Airbnb if it Has THIS - Video edited by Aron Mondragon"
                                 frameborder="0"
+                                loading="lazy"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -255,12 +303,6 @@
                                 </h3>
                                 <p class="text-xs sm:text-sm text-zinc-500">Real Estate Robinsons</p>
                             </div>
-                            <!--
-                            <div class="text-right">
-                                <span class="text-xs font-mono text-accent bg-accent/10 px-2 py-1 rounded">
-                                    1.2M Views
-                                </span>
-                            </div>-->
                         </div>
                     </article>
 
@@ -270,7 +312,9 @@
                             <iframe
                                 class="absolute inset-0 w-full h-full"
                                 src="https://www.youtube.com/embed/LgVPazw6Kfg"
+                                title="Mixed Media Art Supplies - Video edited by Aron Mondragon"
                                 frameborder="0"
+                                loading="lazy"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -290,7 +334,9 @@
                             <iframe
                                 class="absolute inset-0 w-full h-full"
                                 src="https://drive.google.com/file/d/1oeX1EwvRWlbfz_fXWQgV6-fraopa8RNL/preview"
+                                title="ESP Podcast Episode 16 - Video edited by Aron Mondragon"
                                 frameborder="0"
+                                loading="lazy"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -311,7 +357,9 @@
                             <iframe
                                 class="absolute inset-0 w-full h-full"
                                 src="https://drive.google.com/file/d/1p2sCTXr6ATeSS2kF6EUQdVmHN7uEbJM6/preview"
+                                title="Mammoth Founders Video - Video edited by Aron Mondragon"
                                 frameborder="0"
+                                loading="lazy"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -348,11 +396,10 @@
                                     group-hover:border-accent/40
                                     transition-colors">
 
-                            <!-- YouTube Shorts Embed -->
                             <iframe
                             class="absolute inset-0 w-full h-full"
                             src="https://www.youtube.com/embed/Rz8BXpLy7dk?rel=0&modestbranding=1"
-                            title="Carlos Yulo Awarded Massive Gifts from the Philippine Government"
+                            title="Carlos Yulo Awarded Massive Gifts from the Philippine Government - Edited by Aron Mondragon"
                             frameborder="0"
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
@@ -377,11 +424,10 @@
                                     group-hover:border-accent/40
                                     transition-colors">
 
-                            <!-- YouTube Shorts Embed -->
                             <iframe
                             class="absolute inset-0 w-full h-full"
                             src="https://www.youtube.com/embed/1GIZK_MNtWc?rel=0&modestbranding=1"
-                            title="Neu Breed Creatives Ad Video"
+                            title="Neu Breed Creatives Ad Video - Edited by Aron Mondragon"
                             frameborder="0"
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
@@ -407,11 +453,10 @@
                                     group-hover:border-accent/40
                                     transition-colors">
 
-                            <!-- YouTube Shorts Embed -->
                             <iframe
                             class="absolute inset-0 w-full h-full"
                             src="https://www.youtube.com/embed/XrFuOILuz30?rel=0&modestbranding=1"
-                            title="XNote Ad"
+                            title="XNote Ad - Edited by Aron Mondragon"
                             frameborder="0"
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
@@ -435,11 +480,10 @@
                                     group-hover:border-accent/40
                                     transition-colors">
 
-                            <!-- YouTube Shorts Embed -->
                             <iframe
                             class="absolute inset-0 w-full h-full"
                             src="https://www.youtube.com/embed/zkgW3ZWiytY?rel=0&modestbranding=1"
-                            title="DIMO Macaron Ad"
+                            title="DIMO Macaron Ad - Edited by Aron Mondragon"
                             frameborder="0"
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
@@ -463,11 +507,10 @@
                                     group-hover:border-accent/40
                                     transition-colors">
 
-                            <!-- YouTube Shorts Embed -->
                             <iframe
                             class="absolute inset-0 w-full h-full"
                             src="https://www.youtube.com/embed/eSZWUMc2-9k?rel=0&modestbranding=1"
-                            title="Luma Nutrition Nattokinase Ad"
+                            title="Luma Nutrition Nattokinase Ad - Edited by Aron Mondragon"
                             frameborder="0"
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen
@@ -489,553 +532,3 @@
                         <div class="bg-subtle w-full aspect-[9/16] relative mb-3 sm:mb-4 overflow-hidden
                                     border border-white/5
                                     group-hover:border-accent/40
-                                    transition-colors">
-
-                            <!-- YouTube Shorts Embed -->
-                            <iframe
-                            class="absolute inset-0 w-full h-full"
-                            src="https://www.youtube.com/embed/ejdBYufDuOw?rel=0&modestbranding=1"
-                            title="AppLovin Ad"
-                            frameborder="0"
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            loading="lazy">
-                            </iframe>
-
-                        </div>
-
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors leading-tight">
-                            AppLovin Ad
-                            </h3>
-                            <div class="flex justify-between items-center">
-                            <p class="text-xs text-zinc-500"></p>
-                            </div>
-                        </div>
-                        </article>
-
-                    <!-- Short 7 -->
-                    <article class="group">
-                        <div class="bg-subtle w-full aspect-[9/16] relative mb-3 sm:mb-4 overflow-hidden
-                                    border border-white/5
-                                    group-hover:border-accent/40
-                                    transition-colors">
-
-                            <!-- YouTube Shorts Embed -->
-                            <iframe
-                            class="absolute inset-0 w-full h-full"
-                            src="https://www.youtube.com/embed/m5GP5Ei7OK8?rel=0&modestbranding=1"
-                            title="VKTRY Insoles"
-                            frameborder="0"
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            loading="lazy">
-                            </iframe>
-
-                        </div>
-
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors leading-tight">
-                            VKTRY Insoles Ad
-                            </h3>
-                            <div class="flex justify-between items-center">
-                            <p class="text-xs text-zinc-500"></p>
-                            </div>
-                        </div>
-                        </article>
-
-                    <!-- Short 8 -->
-                    <article class="group">
-                        <div class="bg-subtle w-full aspect-[9/16] relative mb-3 sm:mb-4 overflow-hidden
-                                    border border-white/5
-                                    group-hover:border-accent/40
-                                    transition-colors">
-
-                            <!-- YouTube Shorts Embed -->
-                            <iframe
-                            class="absolute inset-0 w-full h-full"
-                            src="https://www.youtube.com/embed/qi9I-ptUysc?rel=0&modestbranding=1"
-                            title="Kerala Botanics Ad"
-                            frameborder="0"
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            loading="lazy">
-                            </iframe>
-
-                        </div>
-
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors leading-tight">
-                            Kerala Botanics Ad
-                            </h3>
-                            <div class="flex justify-between items-center">
-                            <p class="text-xs text-zinc-500">Short-form Ad</p>
-                            </div>
-                        </div>
-                        </article>
-
-                    <!-- Short 9 -->
-                    <article class="group">
-                        <div class="bg-subtle w-full aspect-[9/16] relative mb-3 sm:mb-4 overflow-hidden
-                                    border border-white/5
-                                    group-hover:border-accent/40
-                                    transition-colors">
-
-                            <!-- YouTube Shorts Embed -->
-                            <iframe
-                            class="absolute inset-0 w-full h-full"
-                            src="https://www.youtube.com/embed/LHUTaXYlzFc?rel=0&modestbranding=1"
-                            title="RescueMD Ad"
-                            frameborder="0"
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                            loading="lazy">
-                            </iframe>
-
-                        </div>
-
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors leading-tight">
-                            RescueMD Ad
-                            </h3>
-                            <div class="flex justify-between items-center">
-                            <p class="text-xs text-zinc-500">Short-form Ad</p>
-                            </div>
-                        </div>
-                        </article>
-                    
-                </div>
-            </section>
-        </div>
-
-        <!-- GRAPHICS PAGE -->
-        <div id="graphics" class="page-view">
-            <section class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-8 sm:mb-12 md:mb-16">
-                    <div>
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4">Graphics</h2>
-                        <p class="text-sm sm:text-base text-zinc-400">Thumbnails, motion assets, and brand identity systems.</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <!-- Graphic 1 -->
-                    <article class="group cursor-pointer">
-                        <div class="bg-subtle w-full aspect-video relative mb-3 sm:mb-4 overflow-hidden border border-white/5 group-hover:border-accent/40 transition-colors">
-                             <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-4xl sm:text-5xl opacity-20 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">🖼️</span>
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors">High CTR Thumbnails</h3>
-                            <p class="text-xs text-zinc-500">Youtube / A/B Testing</p>
-                        </div>
-                    </article>
-
-                    <!-- Graphic 2 -->
-                    <article class="group cursor-pointer">
-                        <div class="bg-subtle w-full aspect-square relative mb-3 sm:mb-4 overflow-hidden border border-white/5 group-hover:border-accent/40 transition-colors">
-                             <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-4xl sm:text-5xl opacity-20 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">🅰️</span>
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors">Typography Suite</h3>
-                            <p class="text-xs text-zinc-500">Motion Guidelines</p>
-                        </div>
-                    </article>
-
-                    <!-- Graphic 3 -->
-                    <article class="group cursor-pointer">
-                        <div class="bg-subtle w-full aspect-video relative mb-3 sm:mb-4 overflow-hidden border border-white/5 group-hover:border-accent/40 transition-colors">
-                             <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-4xl sm:text-5xl opacity-20 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">📉</span>
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors">Lower Thirds Pack</h3>
-                            <p class="text-xs text-zinc-500">Broadcast / Stream</p>
-                        </div>
-                    </article>
-
-                    <!-- Graphic 4 -->
-                    <article class="group cursor-pointer">
-                        <div class="bg-subtle w-full aspect-square relative mb-3 sm:mb-4 overflow-hidden border border-white/5 group-hover:border-accent/40 transition-colors">
-                             <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-4xl sm:text-5xl opacity-20 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">📦</span>
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors">3D Product Mockups</h3>
-                            <p class="text-xs text-zinc-500">Cinema 4D / Blender</p>
-                        </div>
-                    </article>
-
-                    <!-- Graphic 5 -->
-                    <article class="group cursor-pointer">
-                        <div class="bg-subtle w-full aspect-video relative mb-3 sm:mb-4 overflow-hidden border border-white/5 group-hover:border-accent/40 transition-colors">
-                             <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-4xl sm:text-5xl opacity-20 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">⚡</span>
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors">Transition Assets</h3>
-                            <p class="text-xs text-zinc-500">Alpha Channel</p>
-                        </div>
-                    </article>
-
-                     <!-- Graphic 6 -->
-                     <article class="group cursor-pointer">
-                        <div class="bg-subtle w-full aspect-square relative mb-3 sm:mb-4 overflow-hidden border border-white/5 group-hover:border-accent/40 transition-colors">
-                             <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-4xl sm:text-5xl opacity-20 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">📺</span>
-                            </div>
-                        </div>
-                        <div class="space-y-1">
-                            <h3 class="text-base sm:text-lg font-semibold group-hover:text-accent transition-colors">Channel Identity</h3>
-                            <p class="text-xs text-zinc-500">Full Rebrand</p>
-                        </div>
-                    </article>
-                </div>
-            </section>
-        </div>
-
-        <!-- ABOUT PAGE -->
-        <div id="about" class="page-view">
-        <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 md:gap-16 items-start">
-
-            <!-- Text Content -->
-            <div class="space-y-8 sm:space-y-10 order-2 md:order-1">
-                <div>
-                <span class="text-accent font-mono text-[10px] sm:text-xs uppercase tracking-widest mb-2 sm:mb-3 block">
-                    The Process
-                </span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
-                    More than just cuts.
-                </h2>
-                </div>
-
-                <div class="text-sm sm:text-base text-zinc-400 leading-relaxed space-y-4 sm:space-y-6 max-w-xl">
-                <p>
-                    In 2026, attention is the most valuable currency.
-                    As a performance-driven video editor, I don't just assemble clips.
-                    I engineer pacing, sound design, and visual rhythm to keep viewers watching longer and taking action.
-                </p>
-                <p>
-                    With 4+ years working in Adobe Premiere Pro, After Effects, Photoshop, and emerging AI tools,
-                    my process blends cinematic polish with direct-response performance. Every creative decision is intentional.
-                    If it doesn't support retention, clarity, or conversion, it doesn't stay.
-                </p>
-                <p>
-                    Whether I'm helping scale a YouTube channel or lowering CPA on paid ads,
-                    every edit is built around one thing: a clearly defined KPI and measurable ROI.
-                </p>
-                </div>
-
-                <!-- Tech Stack -->
-                <div class="pt-6 sm:pt-8 border-t border-white/10">
-                <h3 class="text-white font-medium mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-wide">
-                    Tech Stack
-                </h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-2 sm:px-3 py-1 bg-white/5 border border-white/10 text-[10px] sm:text-xs text-zinc-300">
-                    Premiere Pro
-                    </span>
-                    <span class="px-2 sm:px-3 py-1 bg-white/5 border border-white/10 text-[10px] sm:text-xs text-zinc-300">
-                    Photoshop
-                    </span>
-                    <span class="px-2 sm:px-3 py-1 bg-white/5 border border-white/10 text-[10px] sm:text-xs text-zinc-300">
-                    AI Tools
-                    </span>
-                    <span class="px-2 sm:px-3 py-1 bg-white/5 border border-white/10 text-[10px] sm:text-xs text-zinc-300">
-                    After Effects
-                    </span>
-                    <span class="px-2 sm:px-3 py-1 bg-white/5 border border-white/10 text-[10px] sm:text-xs text-zinc-300">
-                    Capcut
-                    </span>
-                    <span class="px-2 sm:px-3 py-1 bg-white/5 border border-white/10 text-[10px] sm:text-xs text-zinc-300">
-                    Frame.io
-                    </span>
-                </div>
-                </div>
-            </div>
-
-            <!-- Image Column -->
-            <div class="relative order-1 md:order-2">
-
-                <!-- Soft background glow -->
-                <div class="absolute -top-10 sm:-top-20 -right-10 sm:-right-20 w-[150px] sm:w-[200px] md:w-[300px] h-[150px] sm:h-[200px] md:h-[300px]
-                            bg-accent/10 blur-[60px] sm:blur-[80px] md:blur-[120px] rounded-full pointer-events-none">
-                </div>
-
-                <!-- Image wrapper -->
-                <div class="relative aspect-[4/5] w-full max-w-sm mx-auto md:max-w-none overflow-hidden
-                            border border-white/10 bg-black">
-
-                <!-- Your actual image -->
-                <img
-                    src="AronPic2.png"
-                    alt="Portrait of video editor"
-                    class="w-full h-full object-cover"
-                />
-
-                <!-- Subtle gradient overlay -->
-                <div class="absolute inset-0 bg-gradient-to-t
-                            from-black/60 via-black/10 to-transparent">
-                </div>
-
-                <!-- Status card -->
-                <div class="absolute bottom-3 sm:bottom-5 left-3 sm:left-5 right-3 sm:right-5
-                            bg-black/80 backdrop-blur
-                            border border-white/10 p-3 sm:p-4">
-                    <div class="flex items-center justify-between text-[10px] sm:text-xs font-mono text-zinc-400 mb-2">
-                    <span>STATUS</span>
-                    <span class="flex items-center gap-2 text-accent">
-                        <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-accent"></span>
-                        AVAILABLE
-                    </span>
-                    </div>
-                    <div class="h-1 bg-zinc-800 w-full overflow-hidden">
-                    <div class="h-full bg-accent w-2/3"></div>
-                    </div>
-                </div>
-
-                </div>
-            </div>
-
-            </div>
-        </section>
-        </div>
-
-
-        <!-- CONTACT PAGE -->
-            <div id="contact" class="page-view">
-            <section class="max-w-2xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
-                
-                <!-- Header -->
-                <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Let's edit your next hit.</h2>
-                <p class="text-sm sm:text-base text-zinc-400">
-                    Accepting clients for 2026. Fill out the form or email directly.
-                </p>
-                </div>
-
-                <!-- Form Card -->
-                <div class="bg-surface border border-white/5 p-5 sm:p-8 md:p-10">
-                <form
-                    action="https://formspree.io/f/xzdvzvek"
-                    method="POST"
-                    class="space-y-5 sm:space-y-6"
-                >
-
-                    <!-- Hidden metadata -->
-                    <input type="hidden" name="_subject" value="New Portfolio Inquiry" />
-                    <input type="hidden" name="_template" value="table" />
-
-                    <!-- Name + Email -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                    <div class="space-y-2">
-                        <label class="text-[10px] sm:text-xs font-medium text-zinc-500 uppercase">
-                        Your Name
-                        </label>
-                        <input
-                        type="text"
-                        name="name"
-                        required
-                        class="w-full bg-black/50 border border-white/10 p-3 sm:p-3 text-white focus-ring transition-all text-base"
-                        placeholder="John Doe"
-                        />
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="text-[10px] sm:text-xs font-medium text-zinc-500 uppercase">
-                        Email
-                        </label>
-                        <input
-                        type="email"
-                        name="email"
-                        required
-                        class="w-full bg-black/50 border border-white/10 p-3 sm:p-3 text-white focus-ring transition-all text-base"
-                        placeholder="john@company.com"
-                        />
-                    </div>
-                    </div>
-
-                    <!-- Project Type -->
-                    <div class="space-y-2">
-                    <label class="text-[10px] sm:text-xs font-medium text-zinc-500 uppercase">
-                        Project Type
-                    </label>
-                    <select
-                        name="project_type"
-                        required
-                        class="w-full bg-black/50 border border-white/10 p-3 sm:p-3 text-white focus-ring transition-all appearance-none cursor-pointer text-base"
-                    >
-                        <option value="">Select a project type</option>
-                        <option>Social Media Ads (UGC)</option>
-                        <option>YouTube Long Form</option>
-                        <option>Shorts / TikToks</option>
-                    </select>
-                    </div>
-
-                    <!-- Message -->
-                    <div class="space-y-2">
-                    <label class="text-[10px] sm:text-xs font-medium text-zinc-500 uppercase">
-                        Project Details
-                    </label>
-                    <textarea
-                        name="message"
-                        rows="4"
-                        required
-                        class="w-full bg-black/50 border border-white/10 p-3 sm:p-3 text-white focus-ring transition-all text-base"
-                        placeholder="Tell me about your footage amount, desired style, and deadline..."
-                    ></textarea>
-                    </div>
-
-                    <!-- Submit -->
-                    <button
-                    type="submit"
-                    class="w-full bg-accent text-black font-bold py-4 text-sm uppercase tracking-wider hover:bg-white transition-colors touch-target"
-                    >
-                    Send Inquiry
-                    </button>
-
-                    <!-- Microcopy -->
-                    <p class="text-[10px] sm:text-xs text-zinc-500 text-center">
-                    I usually reply within 24 hours.
-                    </p>
-
-                </form>
-                </div>
-
-                <!-- Direct Email -->
-                <div class="mt-8 sm:mt-12 text-center border-t border-white/5 pt-6 sm:pt-8">
-                <a
-                    href="mailto:mondragonaron11@gmail.com"
-                    class="text-base sm:text-lg md:text-xl font-medium text-white hover:text-accent transition-colors break-all"
-                >
-                    mondragonaron11@gmail.com
-                </a>
-                </div>
-
-            </section>
-            </div>
-
-    </main>
-
-    <!-- Footer -->
-        <footer class="border-t border-white/5 bg-black py-4 sm:py-5 mt-auto">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
-
-            <!-- Copyright -->
-            <p class="text-[10px] sm:text-xs text-zinc-500 text-center md:text-left">
-            © 2026 Aron Mondragon. All rights reserved.
-            </p>
-
-            <!-- Social Icons -->
-            <div class="flex items-center gap-2 sm:gap-3 overflow-visible">
-
-            <!-- X -->
-            <a
-                href="https://x.com/mondieedits"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X (Twitter)"
-                class="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center
-                    text-zinc-500
-                    hover:text-white
-                    transition-colors
-                    overflow-visible touch-target"
-            >
-                <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current flex-shrink-0">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-            </a>
-
-            <!-- LinkedIn -->
-            <a
-                href="https://www.linkedin.com/in/jamondragon/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                class="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center
-                    text-zinc-500
-                    hover:text-white
-                    transition-colors
-                    overflow-visible touch-target"
-            >
-                <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current flex-shrink-0">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-            </a>
-
-            <!-- Instagram -->
-            <a
-                href="https://www.instagram.com/mondiearon/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                class="w-10 h-10 sm:w-8 sm:h-8 flex items-center justify-center
-                    text-zinc-500
-                    hover:text-white
-                    transition-colors
-                    overflow-visible touch-target"
-            >
-                <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current flex-shrink-0">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-                </svg>
-            </a>
-
-            </div>
-
-        </div>
-        </footer>
-
-    <!-- Client-side Logic (mimicking React state) -->
-    <script>
-        function router(route) {
-            // Update UI for views
-            document.querySelectorAll('.page-view').forEach(el => {
-                el.classList.remove('active');
-            });
-            const target = document.getElementById(route);
-            if(target) target.classList.add('active');
-
-            // Scroll top
-            window.scrollTo(0,0);
-
-            // Update Nav State
-            document.querySelectorAll('.nav-item').forEach(btn => {
-                if (btn.dataset.route === route) {
-                    btn.classList.add('text-white');
-                    btn.classList.remove('text-zinc-400');
-                } else {
-                    btn.classList.remove('text-white');
-                    btn.classList.add('text-zinc-400');
-                }
-            });
-        }
-
-        function toggleMobile() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('mobile-menu');
-            const toggle = e.target.closest('button[onclick="toggleMobile()"]');
-            if (!menu.contains(e.target) && !toggle && !menu.classList.contains('hidden')) {
-                menu.classList.add('hidden');
-            }
-        });
-
-        // Init
-        document.addEventListener('DOMContentLoaded', () => {
-           // Check if there is a preferred initial route via hash or defaults
-           document.querySelectorAll('.nav-item[data-route="home"]').forEach(el => el.classList.add('text-white'));
-        });
-    </script>
-</body>
-</html>
