@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Aron Mondragon – Video Editor & Performance Marketing Specialist">
     <meta name="twitter:description" content="See the work of video editor Aron Mondragon: performance-driven ads, YouTube edits, and short-form content. Available for 2026 projects.">
-    <meta name="twitter:image" content="https://example.com/AronPic2.png">
+    <meta name="twitter:image" content="https://aronmondragon.com/AronPic2.png">
     <meta name="twitter:site" content="@mondieedits">
 
     <!-- Schema.org Person JSON-LD -->
@@ -302,6 +302,9 @@
                                 src="https://www.youtube.com/embed/6dMtY3aB_78"
                                 title="Don't Buy an Airbnb if it Has THIS (4 Warning Signs) - edited by Aron Mondragon"
                                 frameborder="0"
+                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -323,6 +326,9 @@
                                 src="https://www.youtube.com/embed/LgVPazw6Kfg"
                                 title="Mixed Media Art Supplies I NEVER Leave Home Without! - edited by Aron Mondragon"
                                 frameborder="0"
+                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -344,6 +350,8 @@
                                 src="https://drive.google.com/file/d/1oeX1EwvRWlbfz_fXWQgV6-fraopa8RNL/preview"
                                 title="ESP Podcast Episode 16 - edited by Aron Mondragon"
                                 frameborder="0"
+                                loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -366,6 +374,8 @@
                                 src="https://drive.google.com/file/d/1p2sCTXr6ATeSS2kF6EUQdVmHN7uEbJM6/preview"
                                 title="Mammoth Founders Video - edited by Aron Mondragon"
                                 frameborder="0"
+                                loading="lazy"
+                                referrerpolicy="strict-origin-when-cross-origin"
                                 allowfullscreen>
                             </iframe>
                         </div>
@@ -394,7 +404,7 @@
                 </div>
 
                 <!-- 3 Column Grid for Vertical Content -->
-                <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-12">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-12">
                     <!-- Short 1 -->
                     <article class="group">
                         <div class="bg-subtle w-full aspect-[9/16] relative mb-3 sm:mb-4 overflow-hidden
@@ -1106,8 +1116,9 @@
 
         // Init
         document.addEventListener('DOMContentLoaded', () => {
-           // Mark "home" nav item active if present
-           document.querySelectorAll('.nav-item[data-route="home"]').forEach(el => el.classList.add('text-white'));
+            const hashRoute = window.location.hash.replace('#', '');
+            const initialRoute = document.getElementById(hashRoute) ? hashRoute : 'home';
+            router(initialRoute);
         });
     </script>
 </body>
