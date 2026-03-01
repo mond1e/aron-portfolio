@@ -7,6 +7,11 @@
 
     <link rel="canonical" href="https://aronmondragon.com/" />
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
     <!-- Primary SEO meta -->
     <meta name="description" content="Aron Mondragon is a video editor and performance marketing specialist helping brands and creators grow through high-retention ads, YouTube storytelling, and short-form content. View long-form edits, short-form ads, and get in touch for 2026 projects.">
 
@@ -888,6 +893,7 @@
                 <!-- Form Card -->
                 <div class="bg-surface border border-white/5 p-5 sm:p-8 md:p-10">
                     <form
+                        id="contact-form"
                         action="https://formspree.io/f/xzdvzvek"
                         method="POST"
                         class="space-y-5 sm:space-y-6"
@@ -969,6 +975,8 @@
                         >
                             Send Inquiry
                         </button>
+
+                        <p id="form-notice" class="hidden text-xs sm:text-sm text-center" aria-live="polite"></p>
 
                         <!-- Microcopy -->
                         <p class="text-[10px] sm:text-xs text-zinc-500 text-center">
@@ -1119,6 +1127,53 @@
             const hashRoute = window.location.hash.replace('#', '');
             const initialRoute = document.getElementById(hashRoute) ? hashRoute : 'home';
             router(initialRoute);
+
+            const contactForm = document.getElementById('contact-form');
+            const formNotice = document.getElementById('form-notice');
+            if (contactForm && formNotice) {
+                contactForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Sending...';
+                    }
+
+                    formNotice.classList.remove('hidden', 'text-accent', 'text-red-400');
+                    formNotice.classList.add('text-zinc-400');
+                    formNotice.textContent = 'Sending your inquiry...';
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: contactForm.method,
+                            body: new FormData(contactForm),
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Form submission failed');
+                        }
+
+                        formNotice.classList.remove('text-zinc-400', 'text-red-400');
+                        formNotice.classList.add('text-accent');
+                        formNotice.textContent = 'Inquiry sent. Thank you! I will reply within 24 hours.';
+                        contactForm.reset();
+                    } catch (error) {
+                        formNotice.classList.remove('text-zinc-400', 'text-accent');
+                        formNotice.classList.add('text-red-400');
+                        formNotice.textContent = 'Could not send right now. Please try again or email me directly.';
+                    } finally {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalBtnText || 'Send Inquiry';
+                        }
+                    }
+                });
+            }
         });
     </script>
 </body>
