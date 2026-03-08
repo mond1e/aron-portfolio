@@ -146,7 +146,7 @@
             <!-- Logo + Name -->
             <a
                 href="#home"
-                onclick="router('home')"
+                onclick="return navigateToRoute(event, 'home')"
                 class="flex items-center gap-3 sm:gap-4 md:gap-6 text-white hover:text-accent transition-colors">
                 <img
                     src="AMLogo.png"
@@ -160,23 +160,23 @@
 
             <!-- Desktop Nav -->
             <nav class="hidden md:flex gap-8 text-sm font-medium text-zinc-400" aria-label="Primary">
-                <button onclick="router('short-form')" class="hover:text-white transition-colors nav-item" data-route="short-form">
+                <a href="#short-form" onclick="return navigateToRoute(event, 'short-form')" class="hover:text-white transition-colors nav-item" data-route="short-form">
                     Short-form
-                </button>
-                <button onclick="router('long-form')" class="hover:text-white transition-colors nav-item" data-route="long-form">
+                </a>
+                <a href="#long-form" onclick="return navigateToRoute(event, 'long-form')" class="hover:text-white transition-colors nav-item" data-route="long-form">
                     Long-form
-                </button>
+                </a>
                 <!--
-                <button onclick="router('graphics')" class="hover:text-white transition-colors nav-item" data-route="graphics">
+                <a href="#graphics" onclick="return navigateToRoute(event, 'graphics')" class="hover:text-white transition-colors nav-item" data-route="graphics">
                     Graphics
-                </button>
+                </a>
                 -->
-                <button onclick="router('about')" class="hover:text-white transition-colors nav-item" data-route="about">
+                <a href="#about" onclick="return navigateToRoute(event, 'about')" class="hover:text-white transition-colors nav-item" data-route="about">
                     About
-                </button>
-                <button onclick="router('contact')" class="hover:text-white transition-colors nav-item" data-route="contact">
+                </a>
+                <a href="#contact" onclick="return navigateToRoute(event, 'contact')" class="hover:text-white transition-colors nav-item" data-route="contact">
                     Contact
-                </button>
+                </a>
             </nav>
 
             <!-- Mobile Menu Toggle -->
@@ -192,11 +192,11 @@
     <!-- Mobile Nav Overlay -->
     <div id="mobile-menu" class="hidden fixed top-16 sm:top-20 left-0 w-full bg-surface border-b border-white/5 md:hidden z-40">
         <div class="flex flex-col p-4 gap-2 text-center" role="menu" aria-label="Mobile navigation">
-            <button onclick="router('short-form'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base" role="menuitem">Short-form</button>
-            <button onclick="router('long-form'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base" role="menuitem">Long-form</button>
-            <!--<button onclick="router('graphics'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base">Graphics</button>-->
-            <button onclick="router('about'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base" role="menuitem">About</button>
-            <button onclick="router('contact'); toggleMobile()" class="py-4 text-zinc-300 hover:text-white touch-target text-base" role="menuitem">Contact</button>
+            <a href="#short-form" onclick="return navigateToRoute(event, 'short-form', true)" class="py-4 text-zinc-300 hover:text-white touch-target text-base" role="menuitem">Short-form</a>
+            <a href="#long-form" onclick="return navigateToRoute(event, 'long-form', true)" class="py-4 text-zinc-300 hover:text-white touch-target text-base" role="menuitem">Long-form</a>
+            <!--<a href="#graphics" onclick="return navigateToRoute(event, 'graphics', true)" class="py-4 text-zinc-300 hover:text-white touch-target text-base">Graphics</a>-->
+            <a href="#about" onclick="return navigateToRoute(event, 'about', true)" class="py-4 text-zinc-300 hover:text-white touch-target text-base" role="menuitem">About</a>
+            <a href="#contact" onclick="return navigateToRoute(event, 'contact', true)" class="py-4 text-zinc-300 hover:text-white touch-target text-base" role="menuitem">Contact</a>
         </div>
     </div>
 
@@ -268,13 +268,14 @@
 
                     <!-- CTAs -->
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
-                        <button
-                            onclick="router('contact')"
+                        <a
+                            href="#contact"
+                            onclick="return navigateToRoute(event, 'contact')"
                             class="rounded-full px-6 sm:px-8 py-4 text-sm font-medium
                                     bg-accent text-black
                                     hover:bg-white transition-colors text-center touch-target">
                             Let's talk about your project
-                        </button>
+                        </a>
                         <!--
                         <button
                         onclick="router('long-form')"
@@ -1077,12 +1078,30 @@
 
     <!-- Client-side Logic (mimicking React state) -->
     <script>
-        function router(route) {
+        function getValidRoute(route) {
+            return document.getElementById(route) ? route : 'home';
+        }
+
+        function updateRouteHash(route, replaceHistory = false) {
+            const hash = `#${route}`;
+            if (window.location.hash === hash) return;
+
+            if (replaceHistory) {
+                window.history.replaceState(null, '', hash);
+            } else {
+                window.history.pushState(null, '', hash);
+            }
+        }
+
+        function router(route, options = {}) {
+            const { updateHistory = false, replaceHistory = false } = options;
+            const activeRoute = getValidRoute(route);
+
             // Update UI for views
             document.querySelectorAll('.page-view').forEach(el => {
                 el.classList.remove('active');
             });
-            const target = document.getElementById(route);
+            const target = document.getElementById(activeRoute);
             if(target) target.classList.add('active');
 
             // Scroll top
@@ -1090,7 +1109,7 @@
 
             // Update Nav State
             document.querySelectorAll('.nav-item').forEach(btn => {
-                if (btn.dataset.route === route) {
+                if (btn.dataset.route === activeRoute) {
                     btn.classList.add('text-white');
                     btn.classList.remove('text-zinc-400');
                 } else {
@@ -1098,6 +1117,35 @@
                     btn.classList.add('text-zinc-400');
                 }
             });
+
+            if (updateHistory) {
+                updateRouteHash(activeRoute, replaceHistory);
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (!menu) return;
+
+            menu.classList.add('hidden');
+            const toggleBtn = document.querySelector('button[aria-controls="mobile-menu"]');
+            if (toggleBtn) {
+                toggleBtn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function navigateToRoute(event, route, closeMenu = false) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            router(route, { updateHistory: true });
+
+            if (closeMenu) {
+                closeMobileMenu();
+            }
+
+            return false;
         }
 
         function toggleMobile() {
@@ -1114,19 +1162,20 @@
             const menu = document.getElementById('mobile-menu');
             const toggle = e.target.closest('button[onclick="toggleMobile()"]');
             if (!menu.contains(e.target) && !toggle && !menu.classList.contains('hidden')) {
-                menu.classList.add('hidden');
-                const toggleBtn = document.querySelector('button[aria-controls="mobile-menu"]');
-                if (toggleBtn) {
-                    toggleBtn.setAttribute('aria-expanded', 'false');
-                }
+                closeMobileMenu();
             }
+        });
+
+        window.addEventListener('hashchange', () => {
+            const hashRoute = window.location.hash.replace('#', '');
+            router(hashRoute);
         });
 
         // Init
         document.addEventListener('DOMContentLoaded', () => {
             const hashRoute = window.location.hash.replace('#', '');
-            const initialRoute = document.getElementById(hashRoute) ? hashRoute : 'home';
-            router(initialRoute);
+            const initialRoute = getValidRoute(hashRoute);
+            router(initialRoute, { updateHistory: true, replaceHistory: true });
 
             const contactForm = document.getElementById('contact-form');
             const formNotice = document.getElementById('form-notice');
